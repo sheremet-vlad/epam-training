@@ -1,0 +1,4 @@
+type = CargoTaxi; costByOneKM = 12; passengers = 2; landingCost = 8; capacityInKG = 800;
+type = CargoTaxi; costByOneKM = 16; passengers = 1; landingCost = 9; capacityInKG = 500;
+type = AirTaxi; costByOneKM = 40; passengers = 9; typeOfAirTaxi = plain;
+type = GroundTaxi; costByOneKM = 10; passengers = 8; landingCost = 5;
