@@ -1,5 +1,9 @@
 package com.epam.training.tasks.task2.model.factory;
 
+import com.epam.training.tasks.task2.model.builder.AbstractTaxiBuilder;
+import com.epam.training.tasks.task2.model.builder.AirTaxiBuilder;
+import com.epam.training.tasks.task2.model.builder.CargoTaxiBuilder;
+import com.epam.training.tasks.task2.model.builder.GroundTaxiBuilder;
 import com.epam.training.tasks.task2.model.entity.AbstractTaxi;
 import com.epam.training.tasks.task2.model.entity.AirTaxi;
 import com.epam.training.tasks.task2.model.entity.CargoTaxi;
@@ -11,57 +15,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TaxiFactoryTest {
+    private final TaxiFactory taxiFactory = new TaxiFactory();
     @Test
-    public void shouldReturnObjectAirTaxi() {
-        TaxiFactory taxiFactory = new TaxiFactory();
-        Map<String, String> entryMap = new HashMap<String, String>();
-        entryMap.put("type", "Air_taxi");
-        entryMap.put("costByOneKM", "40");
-        entryMap.put("passengers", "9");
-        entryMap.put("taxiCost", "5000");
-        entryMap.put("typeOfAirTaxi", "plain");
+    public void shouldReturnObjectAirTaxiBuilder() {
 
-        AbstractTaxi abstractTaxi = taxiFactory.factoryMethod(entryMap);
+        AbstractTaxiBuilder abstractTaxiBuilder = taxiFactory.factoryMethod(TypeOfTaxi.AIR_TAXI);
 
-        Class expectedClass = AirTaxi.class;
-        Class actualCLass = abstractTaxi.getClass();
+        Class expectedClass = AirTaxiBuilder.class;
+        Class actualCLass = abstractTaxiBuilder.getClass();
 
         Assert.assertEquals(actualCLass, expectedClass);
     }
 
     @Test
-    public void shouldReturnObjectCargoTaxi() {
-        TaxiFactory taxiFactory = new TaxiFactory();
-        Map<String, String> entryMap = new HashMap<String, String>();
-        entryMap.put("type", "Cargo_Taxi");
-        entryMap.put("costByOneKM", "12");
-        entryMap.put("passengers", "2");
-        entryMap.put("taxiCost", "5000");
-        entryMap.put("landingCost", "8");
-        entryMap.put("capacityInKG", "800");
+    public void shouldReturnObjectCargoTaxiBuilder() {
+        AbstractTaxiBuilder abstractTaxiBuilder = taxiFactory.factoryMethod(TypeOfTaxi.CARGO_TAXI);
 
-        AbstractTaxi abstractTaxi = taxiFactory.factoryMethod(entryMap);
-
-        Class expectedClass = CargoTaxi.class;
-        Class actualCLass = abstractTaxi.getClass();
+        Class expectedClass = CargoTaxiBuilder.class;
+        Class actualCLass = abstractTaxiBuilder.getClass();
 
         Assert.assertEquals(actualCLass, expectedClass);
     }
 
     @Test
     public void shouldReturnObjectGroundTaxi() {
-        TaxiFactory taxiFactory = new TaxiFactory();
-        Map<String, String> entryMap = new HashMap<String, String>();
-        entryMap.put("type", "Ground_Taxi");
-        entryMap.put("costByOneKM", "12");
-        entryMap.put("taxiCost", "5000");
-        entryMap.put("passengers", "2");
-        entryMap.put("landingCost", "8");
 
-        AbstractTaxi abstractTaxi = taxiFactory.factoryMethod(entryMap);
+        AbstractTaxiBuilder abstractTaxiBuilder = taxiFactory.factoryMethod(TypeOfTaxi.GROUND_TAXI);
 
-        Class expectedClass = GroundTaxi.class;
-        Class actualCLass = abstractTaxi.getClass();
+        Class expectedClass = GroundTaxiBuilder.class;
+        Class actualCLass = abstractTaxiBuilder.getClass();
 
         Assert.assertEquals(actualCLass, expectedClass);
     }

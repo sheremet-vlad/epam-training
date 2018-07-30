@@ -4,6 +4,9 @@ public class AirTaxi extends AbstractTaxi{
 
     private TypeOfAirTaxi typeOfAirVehicle;
 
+    public AirTaxi() {
+    }
+
     public AirTaxi(TypeOfAirTaxi typeOfAirTaxi) {
         super();
         this.typeOfAirVehicle = typeOfAirTaxi;
@@ -17,6 +20,10 @@ public class AirTaxi extends AbstractTaxi{
 
     public TypeOfAirTaxi getTypeOfAirVehicle() {
         return typeOfAirVehicle;
+    }
+
+    public void setTypeOfAirVehicle(TypeOfAirTaxi typeOfAirVehicle) {
+        this.typeOfAirVehicle = typeOfAirVehicle;
     }
 
     @Override

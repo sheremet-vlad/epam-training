@@ -1,11 +1,16 @@
 package com.epam.training.tasks.task2.utility.creator;
 
 import com.epam.training.tasks.task2.exception.TaxiParkAppException;
+import com.epam.training.tasks.task2.model.builder.AbstractTaxiBuilder;
+import com.epam.training.tasks.task2.model.builder.AirTaxiBuilder;
+import com.epam.training.tasks.task2.model.builder.CargoTaxiBuilder;
+import com.epam.training.tasks.task2.model.builder.GroundTaxiBuilder;
 import com.epam.training.tasks.task2.model.entity.AbstractTaxi;
 import com.epam.training.tasks.task2.model.entity.AirTaxi;
 import com.epam.training.tasks.task2.model.entity.CargoTaxi;
 import com.epam.training.tasks.task2.model.entity.TaxiPark;
 import com.epam.training.tasks.task2.model.factory.TaxiFactory;
+import com.epam.training.tasks.task2.model.factory.TypeOfTaxi;
 import com.epam.training.tasks.task2.utility.parser.DataParser;
 import com.epam.training.tasks.task2.utility.reader.DataReader;
 import com.epam.training.tasks.task2.utility.validator.DataValidator;
@@ -21,13 +26,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class TaxiParkCreatorTest {
+    private String fileName = "src/test/resources/TestDataReader.txt";
+    private List<String> listOfStrings = new ArrayList<String>();
+    private final Map<String, String> objectsFields = new HashMap<>();
+    private List<Map<String, String>> listOfObjectsFields = new ArrayList<Map<String, String>>();
+    
     @Test
     public void shouldReturnListOfTaxiWithSizeOne() throws TaxiParkAppException {
-        String fileName = "src/test/resources/TestDataReader.txt";
-        List<String> listOfStrings = new ArrayList<String>();
-        List<Map<String, String>> listOfObjectsFields = new ArrayList<Map<String, String>>();
-        listOfObjectsFields.add(new HashMap<String, String>());
-        Map<String, String> objectsFields = new HashMap<String, String>();
+        addData();
 
         DataReader dataReader = mock(DataReader.class);
         when(dataReader.readData(fileName)).thenReturn(listOfStrings);
@@ -39,9 +45,12 @@ public class TaxiParkCreatorTest {
         when(dataParser.parseData(listOfStrings)).thenReturn(listOfObjectsFields);
 
         TaxiFactory taxiFactory = mock(TaxiFactory.class);
-        when(taxiFactory.factoryMethod(objectsFields)).thenReturn(new CargoTaxi(4,5,6,7,8));
+        when(taxiFactory.factoryMethod(TypeOfTaxi.GROUND_TAXI)).thenReturn(new GroundTaxiBuilder());
 
-        TaxiParkCreator taxiParkCreator = new TaxiParkCreator(dataReader, dataValidator, dataParser, taxiFactory);
+        AbstractTaxiBuilder abstractTaxiBuilder = mock(AbstractTaxiBuilder.class);
+        when(abstractTaxiBuilder.create(objectsFields)).thenReturn(new CargoTaxi());
+
+        TaxiParkCreator taxiParkCreator = new TaxiParkCreator(dataReader, dataValidator, dataParser, taxiFactory, abstractTaxiBuilder);
 
         TaxiPark taxiPark = taxiParkCreator.createTaxiPark(fileName);
         List<AbstractTaxi> listOfTaxi = taxiPark.getListOfTaxi();
@@ -50,4 +59,16 @@ public class TaxiParkCreatorTest {
 
         Assert.assertEquals(sizeOfTaxiParking, 1);
     }
+
+    private void addData() {
+        objectsFields.put("type", "Ground_Taxi");
+        objectsFields.put("costByOneKM", "10");
+        objectsFields.put("passengers", "8");
+        objectsFields.put("taxiCost", "20000");
+        objectsFields.put("landingCost", "5");
+        listOfObjectsFields.add(objectsFields);
+    }
+
+
+
 }

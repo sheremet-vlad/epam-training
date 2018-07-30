@@ -9,12 +9,25 @@ public class GroundTaxiBuilder extends AbstractTaxiBuilder {
 
     protected static final String FIELD_LANDING_COST = "landingCost";
 
-    public AbstractTaxi create(Map<String, String> objectsFields){
-        int passengerCount = Integer.parseInt(objectsFields.get(FIELD_PASSENGERS));
-        int costByOneKM = Integer.parseInt(objectsFields.get(FIELD_COST_BY_ONE_KM));
-        int landingCost = Integer.parseInt(objectsFields.get(FIELD_LANDING_COST));
-        int taxiCost = Integer.parseInt(objectsFields.get(FIELD_TAXI_COST));
+    private int landingCost;
 
-        return new GroundTaxi(costByOneKM,passengerCount,taxiCost,landingCost);
+    public AbstractTaxi create(Map<String, String> objectsFields){
+        GroundTaxi groundTaxi = new GroundTaxi();
+
+        assignFieldFromMap(objectsFields);
+        setFields(groundTaxi);
+
+        return groundTaxi;
+    }
+
+    protected void assignFieldFromMap(Map<String, String> objectsFields) {
+        super.assignFieldFromMap(objectsFields);
+
+        landingCost = Integer.parseInt(objectsFields.get(FIELD_LANDING_COST));
+    }
+
+    protected void setFields(GroundTaxi groundTaxi) {
+        super.setFields(groundTaxi);
+        groundTaxi.setLandingCost(landingCost);
     }
 }
