@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://www.example.com/flowers"
+        targetNamespace="http://www.example.com/flowers"
+        elementFormDefault="qualified">
+
+    <element name="flower" type="tns:Flower"/>
+    <element name="carnivorous_flower" type="tns:Carnivorous_Flower" substitutionGroup="tns:flower"/>
+
+    <element name="flowers">
+        <complexType>
+            <sequence>
+                <element ref="tns:flower" minOccurs="2" maxOccurs="unbounded" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Flower">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="visual_parametr" type="tns:Visual_parametr"/>
+        </sequence>
+        <attribute name="origin" type="string"/>
+        <attribute name="soil">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="podzolic"/>
+                    <enumeration value="soddy_podzolic"/>
+                    <enumeration value="unpaved"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <complexType name="Carnivorous_Flower">
+        <complexContent>
+            <extension base="tns:Flower">
+                <sequence>
+                    <element name="digestion_in_seconds" type="unsignedInt"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Visual_parametr">
+        <sequence>
+            <element name="stem_color" type="string"/>
+            <element name="sheet_color" type="string"/>
+            <element name="average_size" type="unsignedInt"/>
+        </sequence>
+    </complexType>
+</schema>

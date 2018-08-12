@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<flowers xmlns:tns="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.example.com/flowers"
+         tns:schemaLocation="http://www.example.com/flowers flowers.xsd">
+
+    <flower origin="Russia" soil="podzolic">
+        <visualParametrs>
+            <stemColor>Green</stemColor>
+            <sheetColor>Red</sheetColor>
+            <averageSize>40</averageSize>
+        </visualParametrs>
+    </flower>
+
+    <flower origin="England" soil="soddy-podzolic">
+        <name>Violet</name>
+        <visualParametrs>
+            <stemColor>Green</stemColor>
+            <sheetColor>Yellow</sheetColor>
+            <averageSize>15</averageSize>
+        </visualParametrs>
+    </flower>
+
+    <carnivorousFlower origin="Russia" soil="podzolic">
+        <name>Nepenthes</name>
+        <visualParametrs>
+            <stemColor>Brown</stemColor>
+            <sheetColor>Green</sheetColor>
+            <averageSize>40</averageSize>
+        </visualParametrs>
+        <digestionInSeconds>654800</digestionInSeconds>
+    </carnivorousFlower>
+
+    <carnivorousFlower origin="Russia" soil="podzolic">
+        <name>Abra</name>
+        <visualParametrs>
+            <stemColor>Brown</stemColor>
+            <sheetColor>Green</sheetColor>
+            <averageSize>180</averageSize>
+        </visualParametrs>
+        <digestionInSeconds>6500</digestionInSeconds>
+    </carnivorousFlower>
+</flowers>
