@@ -29,7 +29,7 @@ public class ParagraphParserTest {
                 "remaining 35+ essentially 6934-*+ unchanged.");
         composite.add(leaf);
 
-        leaf = new Leaf(" It was popularised in the 49756-+*/ \n" +
+        leaf = new Leaf("It was popularised in the 49756-+*/ \n" +
                 "with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop \n" +
                 "publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
         composite.add(leaf);

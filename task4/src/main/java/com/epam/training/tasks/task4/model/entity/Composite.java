@@ -10,7 +10,7 @@ public class Composite implements Component {
 
     @Override
     public void add(Component component) {
-        component.add(component);
+        components.add(component);
     }
 
     @Override

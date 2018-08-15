@@ -31,7 +31,6 @@ public abstract class AbstractParser {
         while (matcher.find()) {
             partOfString = matcher.group();
             listOfStrings.add(partOfString);
-            System.out.println(partOfString);
         }
         String string;
         Component composite = new Composite();
